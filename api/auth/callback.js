@@ -57,18 +57,22 @@ module.exports = async function callback(req, res) {
   const state = url.searchParams.get("state");
   const expected = parseCookies(req.headers.cookie)[STATE_COOKIE];
   if (!code || !state || !expected || !safeEqual(state, expected)) {
-    return redirect(res, "/?auth=failed", clearState);
+    const why = !code || !state ? "missing-code-or-state" : !expected ? "state-cookie-missing" : "state-mismatch";
+    console.error("auth callback rejected:", why);
+    return redirect(res, `/?auth=failed&reason=${why}`, clearState);
   }
   try {
     const accessToken = await exchangeCode(config, code);
     const login = accessToken ? await fetchLogin(accessToken) : null;
     if (!login || login.toLowerCase() !== config.allowedUser) {
-      return redirect(res, "/?auth=denied", clearState);
+      console.error("auth denied: token exchange or user lookup failed, or wrong account", { gotToken: !!accessToken, login });
+      return redirect(res, `/?auth=denied&reason=${accessToken ? "wrong-account" : "token-exchange-failed"}`, clearState);
     }
     return redirect(res, "/#edit", {
       "Set-Cookie": [clearCookie(STATE_COOKIE), createSessionCookie(login, config.sessionSecret)],
     });
-  } catch {
-    return redirect(res, "/?auth=failed", clearState);
+  } catch (err) {
+    console.error("auth callback error:", err && err.message);
+    return redirect(res, "/?auth=failed&reason=server-error", clearState);
   }
 };

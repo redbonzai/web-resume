@@ -76,20 +76,20 @@ test("callback matches the allowed user case-insensitively", async () => {
 
 test("callback refuses any other GitHub user", async () => {
   const res = await runCallback("s1", "s1", "someone-else");
-  assert.equal(res.headers.location, "/?auth=denied");
+  assert.equal(res.headers.location, "/?auth=denied&reason=wrong-account");
   assert.ok(![].concat(res.headers["set-cookie"]).some((c) => c.startsWith("resume_session=")));
 });
 
 test("callback refuses a state that does not match the cookie", async () => {
   const res = await runCallback("s1", "different");
-  assert.equal(res.headers.location, "/?auth=failed");
+  assert.equal(res.headers.location, "/?auth=failed&reason=state-mismatch");
 });
 
 test("callback refuses when there is no state cookie", async () => {
   mockGithub("redbonzai");
   const res = makeRes();
   await callback(makeReq({ url: "/api/auth/callback?code=abc&state=s1" }), res);
-  assert.equal(res.headers.location, "/?auth=failed");
+  assert.equal(res.headers.location, "/?auth=failed&reason=state-cookie-missing");
 });
 
 test("me reports signed-out, signed-in, and rejects a different account's cookie", () => {
