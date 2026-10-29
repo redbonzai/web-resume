@@ -36,7 +36,8 @@ h1{font:700 clamp(30px,5vw,46px)/1.05 var(--display);margin:0;text-wrap:balance}
 .search input{width:100%;padding:10px 12px 10px 36px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);font:inherit}
 .search svg{position:absolute;left:11px;top:50%;translate:0 -50%;width:16px;height:16px;stroke:var(--muted)}
 button{font:500 13px var(--body);padding:9px 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;cursor:pointer}
-button:hover{border-color:var(--accent)} button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+a.btn{font:500 13px var(--body);padding:9px 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;text-decoration:none;white-space:nowrap}
+a.btn:hover,button:hover{border-color:var(--accent)} button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .count{font:12px var(--mono);color:var(--muted);margin-left:auto}
 main{display:grid;grid-template-columns:300px minmax(0,1fr);gap:36px;padding-top:28px;align-items:start}
 @media(max-width:820px){main{grid-template-columns:minmax(0,1fr)}}
@@ -95,7 +96,7 @@ footer{margin-top:28px;font:12px var(--mono);color:var(--muted);display:flex;gap
     <button id="collapse" type="button">Collapse all</button>
     <button id="exportPdf" type="button">Export PDF</button>
     <button id="exportDocx" type="button">Export Word</button>
-    <button id="oEdit" type="button" aria-expanded="false" hidden>Edit</button>
+    <a id="signin" class="btn" href="/api/auth/login" hidden>Owner sign in</a><button id="oEdit" type="button" aria-expanded="false" hidden>Edit</button>
     <span class="count" id="count" aria-live="polite"></span>
   </div>
 
@@ -127,7 +128,7 @@ footer{margin-top:28px;font:12px var(--mono);color:var(--muted);display:flex;gap
     </div>
   </section>
   
-  <footer id="foot"><span id="footnote"></span><a id="signin" href="/api/auth/login" hidden>Owner sign in</a><span id="exmsg" aria-live="polite"></span></footer>
+  <footer id="foot"><span id="footnote"></span><span id="exmsg" aria-live="polite"></span></footer>
 </div>
 
 <script type="text/plain" id="lib-jspdf">/** @license
