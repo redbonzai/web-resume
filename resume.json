@@ -1,0 +1,468 @@
+{
+  "name": "Christian Dominguez",
+  "headline": "Founding Engineer & CTO",
+  "tagline": "Full-stack, distributed systems and AI-agent platforms. 15+ years shipping APIs, SDKs and production software; three products built from zero as founding engineer.",
+  "location": "Aubrey, TX",
+  "email": "christian@redbonzai.com",
+  "phone": "940 808 2432",
+  "links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/cdominguez-burke/"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/redbonzai"
+    },
+    {
+      "label": "WarehouseJobs.com",
+      "url": "https://warehousejobs.com"
+    }
+  ],
+  "photo": "",
+  "logo": "wj-mark.svg",
+  "summary": "Founding Engineer and CTO with 15+ years designing and shipping distributed systems, APIs, and SDKs. Sole technical owner of WarehouseJobs.com, a production job board, and founding engineer of an AI operations agent (OpenClaw Pilot) and a repair marketplace (Mechanic Dispatch). Deep expertise in TypeScript/NestJS, React and Angular, PostgreSQL, Redis/BullMQ, LLM-agent systems, and contract-first API design, with a record of leading teams and modernizing legacy code across job-board, fintech, healthcare, enterprise, and government domains.",
+  "stats": [
+    {
+      "value": "3",
+      "label": "products built as founding engineer"
+    },
+    {
+      "value": "~340K",
+      "label": "lines of TypeScript across them"
+    },
+    {
+      "value": "490+",
+      "label": "test files (WarehouseJobs)"
+    },
+    {
+      "value": "55+",
+      "label": "tagged releases across repos"
+    },
+    {
+      "value": "3",
+      "label": "LLM providers routed"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Languages",
+      "items": [
+        "TypeScript/JavaScript",
+        "Golang",
+        "Python",
+        "Java",
+        "PHP",
+        "SQL",
+        "Bash"
+      ]
+    },
+    {
+      "group": "Backend & APIs",
+      "items": [
+        "NestJS",
+        "Prisma",
+        "OpenAPI contract-first",
+        "REST",
+        "WebSockets",
+        "BullMQ",
+        "JWT/Passport",
+        "Express",
+        "Spring Boot",
+        "Laravel",
+        "Flask"
+      ]
+    },
+    {
+      "group": "Frontend",
+      "items": [
+        "React 19",
+        "TanStack Start (SSR)",
+        "Angular 19/21",
+        "Tailwind CSS",
+        "Vite",
+        "Vitest",
+        "Karma/Jasmine"
+      ]
+    },
+    {
+      "group": "AI & Agents",
+      "items": [
+        "Claude, OpenAI & Gemini SDKs",
+        "LLM routing & fallback",
+        "tool-calling agents",
+        "MCP servers",
+        "guardrails & human-in-the-loop",
+        "NL eval harnesses",
+        "AI-assisted engineering workflows"
+      ]
+    },
+    {
+      "group": "Data & Caching",
+      "items": [
+        "PostgreSQL",
+        "Prisma",
+        "Redis",
+        "MySQL",
+        "DynamoDB",
+        "MongoDB"
+      ]
+    },
+    {
+      "group": "Cloud & DevOps",
+      "items": [
+        "Docker",
+        "GitHub Actions",
+        "Railway",
+        "Vercel",
+        "Nx/pnpm monorepos",
+        "semantic-release",
+        "AWS (Lambda, ECS, EKS, CDK)",
+        "Kubernetes",
+        "Terraform",
+        "Jenkins",
+        "CircleCI"
+      ]
+    },
+    {
+      "group": "Testing & Quality",
+      "items": [
+        "Jest",
+        "Vitest",
+        "Supertest",
+        "90% coverage gates",
+        "Postman/OpenAPI drift checks",
+        "commitlint"
+      ]
+    },
+    {
+      "group": "SEO & Analytics",
+      "items": [
+        "Search Console",
+        "GA4",
+        "PageSpeed/Core Web Vitals",
+        "Indexing API",
+        "JobPosting JSON-LD",
+        "conversion attribution"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "items": [
+        "Stripe",
+        "Twilio",
+        "Mailchimp",
+        "Slack (Bolt)",
+        "Gmail/Calendar/Drive",
+        "Zoom",
+        "Groups.io",
+        "LinkedIn API",
+        "GitHub"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "WarehouseJobs.com",
+      "role": "Founding Engineer & CTO",
+      "dates": "06/2026 - present",
+      "location": "Remote",
+      "featured": true,
+      "tags": [
+        "React 19",
+        "TanStack Start",
+        "NestJS",
+        "Prisma",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "Stripe",
+        "Twilio",
+        "SEO",
+        "OpenAPI",
+        "MinIO/R2",
+        "Railway",
+        "Vercel",
+        "GitHub Actions",
+        "semantic-release"
+      ],
+      "bullets": [
+        "Sole technical owner of a production warehouse and logistics job board (React 19 / TanStack Start SSR frontend, NestJS 10 API, PostgreSQL/Prisma, Redis/BullMQ, Stripe, Twilio, S3-compatible storage on MinIO/R2): ~250K lines of TypeScript across 18 planned phases and 30+ semantic-versioned releases (v1.30).",
+        "Designed a domain-driven API of 25 bounded contexts, 65 controllers, and a 58-model schema with 40 migrations, governed by a contract-first OpenAPI spec (165 paths) enforced in CI by drift and Postman-sync checks.",
+        "Built an SEO automation platform: in-house crawler, pure-function rule and keyword-opportunity engines, and a weekly BullMQ audit pipeline integrating Google Search Console, GA4, PageSpeed/Core Web Vitals, URL Inspection, and the Indexing API, surfaced in an admin dashboard with geo-market keyword tracking.",
+        "Implemented first-party conversion attribution (UTM/referrer capture through application and order funnels), JobPosting JSON-LD, and index-correct sitemaps, tying organic search to measurable conversions.",
+        "Engineered job distribution in both directions: scheduled ETL from Fantastic.jobs and JobBoardly, an employer batch-ingest API and Excel import wizard with a private ingest SDK, and a tokenized outbound XML feed with event-driven Google Indexing and LinkedIn publishing; ranked direct employer jobs above aggregated listings with SQL-level tiered pagination.",
+        "Delivered monetization and engagement systems: Stripe billing and packages, ad campaigns with GA4 fraud checks, promo codes, SMS/email/WebSocket notifications, phone/email OTP and 2FA, job alerts, and Facebook/Instagram/LinkedIn syndication.",
+        "Established quality gates and release automation: 11 GitHub Actions workflows (lint, type-check, contract, unit, integration, E2E, flake-hunt), 490+ automated test files, a 90% coverage threshold, semantic-release, and Docker deployments to Railway (API) and Vercel (frontend) with staging and production environments.",
+        "Authored an AI-agent engineering framework for the repository: a constitution and agent-orchestration model (architecture, backend, QA, CI-monitor, and review agents), personas, 10 reusable skills, and 13 always-on rules enforcing fail-closed behavior, layering, and contract-first development. The SEO audits themselves are deterministic rule engines; AI agents are used in the engineering workflow."
+      ]
+    },
+    {
+      "company": "OpenClaw Pilot (AgentOps)",
+      "role": "Founding Engineer",
+      "dates": "05/2026 - present",
+      "location": "Personal project, Open Compute Project workstream",
+      "tags": [
+        "NestJS 11",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "Redis",
+        "Claude",
+        "OpenAI",
+        "Gemini",
+        "MCP",
+        "Slack Bolt",
+        "Angular 19",
+        "OpenAPI",
+        "Railway",
+        "Vercel",
+        "LLM evals"
+      ],
+      "bullets": [
+        "Architected and delivered an AI agent that automates communication, coordination, and task management for an Open Compute Project volunteer workstream: 411 commits, semantic-versioned releases through v1.17, MVP in stakeholder testing ahead of a Phase 2 pilot.",
+        "Implemented the Observe-Plan-Execute-Persist agent loop in NestJS with a registry of 36 tool modules (email, calendar, meetings, tasks, GitHub, community), an MCP server bridging the OpenClaw gateway, dry-run-by-default guardrails, and human confirmation gates before any email, calendar, or external-post action.",
+        "Built a multi-provider LlmRouterService across Claude, OpenAI, and Gemini with configurable primary/fallback and per-job routing, plus dual-store memory: Redis for short-term session context, PostgreSQL/Prisma (16 models, 14 migrations) for durable history and audit records.",
+        "Created a natural-language planner evaluation harness: five YAML case suites, deterministic fast-path checks at midnight, DST, and year-end clocks, LLM arms scored in a dedicated CI workflow, and pre-push and nightly training scripts.",
+        "Integrated Gmail, Google Calendar, Drive, Groups.io, Zoom, GitHub, and Slack (Bolt, signed slash/mention commands) through mock/live adapters; delivered meeting intelligence (transcript ingestion, LLM summaries, task extraction, Drive recaps, follow-up drafts) and a community triage/FAQ domain.",
+        "Built an Angular 19 operator dashboard (~12.7K lines, 59 specs) covering agent activity, tasks, meetings, analytics, health, and community views.",
+        "Governed by a canonical OpenAPI contract (55 paths) with CI drift guard and Postman sync; 13 GitHub Actions workflows, 330+ unit specs plus integration, E2E, and smoke suites, a 90% coverage gate, semantic-release, and Railway/Vercel deployments."
+      ]
+    },
+    {
+      "company": "Mechanic Dispatch",
+      "role": "Founding Engineer",
+      "dates": "11/2025 - 04/2026",
+      "location": "Remote startup",
+      "tags": [
+        "NestJS 11",
+        "Prisma 7",
+        "PostgreSQL",
+        "Angular 21",
+        "Stripe",
+        "Nx",
+        "pnpm",
+        "Docker",
+        "Railway",
+        "Vercel",
+        "GitHub Actions",
+        "semantic-release"
+      ],
+      "bullets": [
+        "Architected and delivered a full-stack car repair research and mechanic marketplace: drivers search repair guidance and discover mechanics by skill match; 80 commits and 8+ semantic-versioned releases.",
+        "Built domain-driven NestJS 11 REST APIs on Prisma 7/PostgreSQL (35 models) with JWT/Passport auth, bcrypt, RBAC, and class-validator DTOs across 13 domains and 14 controllers (search, subscriptions, repair guides, car data, admin).",
+        "Developed an Angular 21 frontend (~8.4K lines) with public search and mechanic flows and an admin dashboard for authentication, analytics, and user management.",
+        "Integrated Stripe Basic/Pro/Premium subscriptions with a webhook controller, and adapter-based aggregation of NHTSA VIN decoding, RepairPal, ALLDATA, and CarMD data.",
+        "Re-architected the product from a transaction-focused dispatch model to a DIY research and mechanic discovery marketplace, with a v2 repair-knowledge schema and seed data.",
+        "Set up an Nx/pnpm monorepo with GitHub Actions (affected lint/build/test, API E2E against Postgres), commitlint, semantic-release, Docker images, and Railway and Vercel deployments; Jest unit/integration/E2E (Supertest) and Karma/Jasmine frontend tests."
+      ]
+    },
+    {
+      "company": "Booz Allen Hamilton / Randstad Digital",
+      "role": "Platform Engineer",
+      "dates": "09/2025 - 04/2026",
+      "location": "Tampa, FL",
+      "tags": [
+        "Go",
+        "NestJS",
+        "AWS",
+        "EKS",
+        "ECS",
+        "CDK",
+        "OpenTelemetry",
+        "Redis"
+      ],
+      "bullets": [
+        "Led Golang platform services for high-concurrency infrastructure provisioning across AWS environments.",
+        "Built internal tooling and AI-driven workflows to generate, validate, and deploy infrastructure, reducing manual engineering effort.",
+        "Created reusable AWS CDK L2/L3 constructs (TypeScript and Go) and React/Angular dashboards for deployment state and system health.",
+        "Implemented Blue/Green and Canary deployments, telemetry-driven release gates, and automated rollback; integrated CloudWatch and OpenTelemetry.",
+        "Designed Redis-based caching and state coordination for low-latency distributed workflows."
+      ]
+    },
+    {
+      "company": "Capital One / Ampcus",
+      "role": "Full-Stack Engineer",
+      "dates": "12/2024 - 09/2025",
+      "location": "Chantilly, VA",
+      "tags": [
+        "Java",
+        "Spring Boot",
+        "Scala",
+        "Go",
+        "NestJS",
+        "React",
+        "AWS",
+        "EKS",
+        "Redis"
+      ],
+      "bullets": [
+        "Designed high-performance Golang REST APIs for financial transaction workflows; built Spring Boot and Golang microservices on AWS EKS.",
+        "Implemented Blue/Green and Canary releases in One Pipeline/Jenkins; Kubernetes probes, autoscaling, and fault tolerance.",
+        "Integrated OpenTelemetry, CloudWatch, distributed tracing, and structured logging; participated in incident response and root cause analysis.",
+        "Automated infrastructure with AWS CDK (Golang); built Redis caching, TTL/invalidation strategies, and rate limiting for high-throughput APIs."
+      ]
+    },
+    {
+      "company": "GSK / HarnHam, Inc",
+      "role": "Cloud Distributed Systems Engineer",
+      "dates": "07/2024 - 02/2025",
+      "location": "New York, NY",
+      "tags": [
+        "NestJS",
+        "Go",
+        "AWS",
+        "GCP",
+        "Security",
+        "React",
+        "Docusaurus",
+        "Redis"
+      ],
+      "bullets": [
+        "Built a GitHub Token Exchange service issuing fine-grained, short-lived credentials for CI/CD pipelines, and JIT token generation for SonarQube scans.",
+        "Developed a NestJS Security Monitoring platform integrating GitHub, Jira, and Slack to detect and respond to secrets exposure in real time.",
+        "Delivered a React/Docusaurus documentation platform that improved developer onboarding for CI/CD security tooling."
+      ]
+    },
+    {
+      "company": "Acivilate, Inc",
+      "role": "AWS SDK, Cloud Distributed Systems Engineer",
+      "dates": "03/2023 - 07/2024",
+      "location": "Atlanta, GA",
+      "tags": [
+        "AWS",
+        "Lambda",
+        "API Gateway",
+        "DynamoDB",
+        "Cognito",
+        "GraphQL",
+        "CDK",
+        "Go",
+        "TypeScript"
+      ],
+      "bullets": [
+        "Implemented REST APIs on API Gateway, Lambda, and DynamoDB with custom authorizers, cutting error rates by 25%.",
+        "Modernized the platform with AWS SDK v3 and CDK; converted legacy JavaScript Lambdas to TypeScript.",
+        "Developed a GraphQL Lambda powering 336+ Lambdas and an Angular 14 client; authored and enforced OpenAPI specs."
+      ]
+    },
+    {
+      "company": "Red Ventures",
+      "role": "Senior Software Engineer",
+      "dates": "05/2022 - 03/2023",
+      "location": "Charlotte, NC",
+      "tags": [
+        "Go",
+        "NestJS",
+        "AWS",
+        "Terraform",
+        "CircleCI",
+        "PostgreSQL",
+        "MongoDB",
+        "Redis"
+      ],
+      "bullets": [
+        "Delivered APIs across banking, credit cards, loans, insurance, and health; built and maintained 6+ Node, Golang, and PHP applications.",
+        "Examples: Golang auto insurance API on Kubernetes, NestJS credit report API (Experian data), and 16 serverless credit card Lambdas.",
+        "Used Redis caching in aggregation services to improve response times and reduce relational database load."
+      ]
+    },
+    {
+      "company": "Experian / Vincent Benjamin",
+      "role": "API SDK Engineer",
+      "dates": "10/2020 - 05/2022",
+      "location": "Austin, TX",
+      "tags": [
+        "SDK",
+        "Go",
+        "Node",
+        "PHP",
+        "Python",
+        "Java",
+        "Symfony"
+      ],
+      "bullets": [
+        "Built credit-data SDKs in Golang, Node, PHP, Python, and Java; supported a Node TypeScript platform and a legacy Symfony platform.",
+        "Delivered a Credit Data Microservice used across client applications."
+      ]
+    },
+    {
+      "company": "University of Utah / Insight Global",
+      "role": "API Engineer",
+      "dates": "06/2020 - 10/2020",
+      "location": "Salt Lake City, UT",
+      "tags": [
+        "Laravel",
+        "Vue.js",
+        "Go",
+        "Oracle"
+      ],
+      "bullets": [
+        "Built a Laravel API and Vue.js SPA for faculty appointment data, plus a Golang service executing Oracle queries."
+      ]
+    },
+    {
+      "company": "Stack Sports",
+      "role": "Senior Software Engineer",
+      "dates": "01/2020 - 10/2020",
+      "location": "Plano, TX",
+      "tags": [
+        "Laravel",
+        "Node",
+        "React",
+        "Payments"
+      ],
+      "bullets": [
+        "Developed payment processor APIs in Laravel and Node, increasing transactions by $75M during COVID.",
+        "Built the React UI and vanilla JS payment widget used by all Stack Sports clients."
+      ]
+    },
+    {
+      "company": "Cognizant (7-Eleven, Brinker International)",
+      "role": "Architect & Technical Team Lead",
+      "dates": "01/2018 - 01/2020",
+      "location": "",
+      "tags": [
+        "React",
+        "Java",
+        "Node",
+        "Go",
+        "Azure",
+        "Symfony",
+        "AWS RDS"
+      ],
+      "bullets": [
+        "Led the Ops Workbench team: React SPA and Java microservices integrating an Azure data lake.",
+        "Designed Node, Golang, and Java APIs for nutrition and operations insights; delivered loyalty systems for Chili's and Maggiano's."
+      ]
+    },
+    {
+      "company": "RedBonzai Developers, Inc",
+      "role": "Owner / Lead Developer",
+      "dates": "02/2008 - 01/2025",
+      "location": "Remote",
+      "tags": [
+        "PHP",
+        "Angular",
+        "RabbitMQ",
+        "Splunk",
+        "Leadership"
+      ],
+      "bullets": [
+        "Delivered 30+ projects for enterprise clients including AT&T, BP, Shaw Floors, University of Utah, and LexisNexis.",
+        "Highlights: payment automation tool for insurance policies, BP America enterprise dashboard (Splunk), and a LexisNexis cell site API processor (Angular, TypeScript, RabbitMQ).",
+        "Built and led teams, managed budgets, and delivered end-to-end solutions."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Houston",
+      "detail": "Mathematics & Physics (BS, 33 credits remaining)"
+    },
+    {
+      "school": "Jersey Village High School",
+      "detail": ""
+    }
+  ]
+}

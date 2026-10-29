@@ -1,0 +1,124 @@
+# Deploys the resume site to Vercel via the Vercel CLI.
+#
+# Why the CLI instead of Vercel's Git integration: the integration needs the Vercel GitHub
+# App, an account-level install. The CLI path only needs a personal access token, and it is
+# the same approach used by the WarehouseJobs.com deploy workflows.
+#
+#   pull request  -> validate, then deploy a preview and comment the URL
+#   push to main  -> validate, then deploy to production
+#   manual run    -> validate, then deploy to production
+#
+# Required GitHub secret (Settings -> Secrets and variables -> Actions -> Secrets):
+#   VERCEL_TOKEN        Vercel -> Account Settings -> Tokens -> Create Token
+#
+# Required GitHub variables (Settings -> Secrets and variables -> Actions -> Variables):
+#   VERCEL_ORG_ID       "orgId" from .vercel/project.json after running `vercel link` once
+#   VERCEL_PROJECT_ID   "projectId" from the same file
+name: Deploy Resume (Vercel)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-resume-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    name: Validate resume.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/validate.mjs
+
+  deploy:
+    name: Deploy
+    needs: validate
+    runs-on: ubuntu-latest
+    # Secrets are not available to pull requests from forks, so only deploy previews for
+    # branches in this repository.
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    env:
+      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify Vercel configuration
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          missing=0
+          [[ -z "$VERCEL_TOKEN" ]] && { echo "::error::Secret VERCEL_TOKEN is not set."; missing=1; }
+          [[ -z "$VERCEL_ORG_ID" ]] && { echo "::error::Variable VERCEL_ORG_ID is not set."; missing=1; }
+          [[ -z "$VERCEL_PROJECT_ID" ]] && { echo "::error::Variable VERCEL_PROJECT_ID is not set."; missing=1; }
+          exit $missing
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Set deploy target
+        id: target
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "env=preview" >> "$GITHUB_OUTPUT"
+            echo "prod_flag=" >> "$GITHUB_OUTPUT"
+          else
+            echo "env=production" >> "$GITHUB_OUTPUT"
+            echo "prod_flag=--prod" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Pull Vercel project settings
+        run: vercel pull --yes --environment=${{ steps.target.outputs.env }} --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Build project artifacts
+        run: vercel build ${{ steps.target.outputs.prod_flag }} --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Deploy prebuilt artifacts
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt ${{ steps.target.outputs.prod_flag }} --token="${{ secrets.VERCEL_TOKEN }}")
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Deployed to $url"
+
+      - name: Smoke check
+        run: |
+          for attempt in $(seq 1 6); do
+            status=$(curl -s -o /dev/null -w "%{http_code}" "${{ steps.deploy.outputs.url }}/resume.json" || echo "000")
+            if [[ "$status" == "200" ]]; then
+              echo "resume.json reachable (HTTP $status) on attempt $attempt"
+              exit 0
+            fi
+            echo "Attempt $attempt/6 returned HTTP $status, retrying in 10s..."
+            sleep 10
+          done
+          echo "::warning::${{ steps.deploy.outputs.url }}/resume.json did not return HTTP 200. Vercel deployment protection may be on; check the project's Settings -> Deployment Protection."
+
+      - name: Comment preview URL on the pull request
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `Preview deployed: ${{ steps.deploy.outputs.url }}`,
+            });
