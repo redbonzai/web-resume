@@ -1,0 +1,11 @@
+{
+  "name": "web-resume",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static resume site with an owner-only editor that commits resume.json to GitHub.",
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate.mjs"
+  }
+}

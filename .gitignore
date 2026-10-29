@@ -2,3 +2,7 @@
 node_modules
 .DS_Store
 .env*
+!.env.example
+.wr-incoming.stale-*
+stale-*
+*.lock

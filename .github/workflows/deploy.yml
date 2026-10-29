@@ -42,6 +42,7 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/validate.mjs
+      - run: npm test
 
   deploy:
     name: Deploy

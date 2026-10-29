@@ -95,7 +95,7 @@ footer{margin-top:28px;font:12px var(--mono);color:var(--muted);display:flex;gap
     <button id="collapse" type="button">Collapse all</button>
     <button id="exportPdf" type="button">Export PDF</button>
     <button id="exportDocx" type="button">Export Word</button>
-    
+    <button id="oEdit" type="button" aria-expanded="false" hidden>Edit</button>
     <span class="count" id="count" aria-live="polite"></span>
   </div>
 
@@ -114,8 +114,20 @@ footer{margin-top:28px;font:12px var(--mono);color:var(--muted);display:flex;gap
     </section>
   </main>
 
+ <section class="editor" id="oeditor" hidden>
+    <h2>Edit the live resume</h2>
+    <p>This is the real resume.json from GitHub. Preview shows your changes on this page only. Save to site commits them to the repository, and the site republishes in about a minute.</p>
+    <textarea id="ojson" spellcheck="false" aria-label="resume.json"></textarea>
+    <div class="row">
+      <button id="osave" class="pri" type="button">Save to site</button>
+      <button id="opreview" type="button">Preview</button>
+      <button id="oreload" type="button">Reload from GitHub</button>
+      <button id="ologout" type="button">Sign out</button>
+      <span class="msg" id="omsg" role="status" aria-live="polite"></span>
+    </div>
+  </section>
   
-  <footer id="foot"><span id="footnote"></span><span id="exmsg" aria-live="polite"></span></footer>
+  <footer id="foot"><span id="footnote"></span><a id="signin" href="/api/auth/login" hidden>Owner sign in</a><span id="exmsg" aria-live="polite"></span></footer>
 </div>
 
 <script type="text/plain" id="lib-jspdf">/** @license
@@ -36814,6 +36826,42 @@ while (n === a[++i] && n === a[++i] && n === a[++i] && n === a[++i] && n === a[+
   $("q").addEventListener("input",render);
   $("expand").onclick=function(){setAll(true)};
   $("collapse").onclick=function(){setAll(false)};
+
+
+  
+  (async function(){
+    if(window.claude)return;
+    var H={"X-Requested-With":"resume-editor"},baseSha=null,om=function(m){$("omsg").textContent=m};
+    var st=null;
+    try{var r=await fetch("/api/auth/me",{credentials:"same-origin",cache:"no-store"});if(r.ok)st=await r.json()}catch(e){}
+    if(!st||!st.authenticated){var qs=location.search;if(/auth=denied/.test(qs))note("That GitHub account is not allowed to edit.");else if(/auth=failed/.test(qs))note("Sign-in did not complete. Try again.");$("signin").hidden=false;return}
+    $("oEdit").hidden=false;
+    async function reload(){
+      om("Loading from GitHub...");
+      var r=await fetch("/api/resume",{credentials:"same-origin",cache:"no-store"});
+      if(r.status===401){om("Your session expired. Sign in again.");$("signin").hidden=false;return false}
+      if(!r.ok){om("Could not read from GitHub. Try again.");return false}
+      var j=await r.json();baseSha=j.sha;$("ojson").value=j.content;om("Loaded the latest version.");return true}
+    function open(o){var e=$("oeditor");e.hidden=!o;$("oEdit").setAttribute("aria-expanded",o);$("oEdit").textContent=o?"Close editor":"Edit";if(o){reload().then(function(){e.scrollIntoView({block:"nearest"})})}}
+    $("oEdit").onclick=function(){open($("oeditor").hidden)};
+    $("opreview").onclick=function(){try{D=JSON.parse($("ojson").value);renderStatic();render();om("Previewing on this page only. Not saved.")}catch(e){om("Invalid JSON: "+e.message)}};
+    $("oreload").onclick=reload;
+    $("osave").onclick=async function(){
+      var b=this;try{JSON.parse($("ojson").value)}catch(e){om("Invalid JSON: "+e.message);return}
+      b.disabled=true;om("Saving...");
+      try{
+        var r=await fetch("/api/save",{method:"POST",credentials:"same-origin",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify({content:$("ojson").value,baseSha:baseSha})});
+        var j={};try{j=await r.json()}catch(e){}
+        if(r.ok){baseSha=j.sha;D=JSON.parse($("ojson").value);renderStatic();render();om("Saved. The site updates in about a minute.")}
+        else if(r.status===401)om("Your session expired. Sign in again.");
+        else if(r.status===409)om("The file changed on GitHub since you opened it. Reload from GitHub, then re-apply your edit.");
+        else if(r.status===422)om("Not saved: "+(j.problems||[]).join("; "));
+        else om("Not saved (error "+r.status+"). Try again.");
+      }catch(e){om("Not saved: network error.")}
+      b.disabled=false};
+    $("ologout").onclick=async function(){try{await fetch("/api/auth/logout",{method:"POST",credentials:"same-origin",headers:H})}catch(e){}location.href="/"};
+    if(location.hash==="#edit")open(true);
+  })();
 
 
   /* ---- export ---- */
