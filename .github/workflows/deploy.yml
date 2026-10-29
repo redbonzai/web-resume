@@ -37,8 +37,8 @@ jobs:
     name: Validate resume.json
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       - run: node scripts/validate.mjs
@@ -57,7 +57,7 @@ jobs:
       VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Verify Vercel configuration
         env:
@@ -69,7 +69,7 @@ jobs:
           [[ -z "$VERCEL_PROJECT_ID" ]] && { echo "::error::Variable VERCEL_PROJECT_ID is not set."; missing=1; }
           exit $missing
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
 
