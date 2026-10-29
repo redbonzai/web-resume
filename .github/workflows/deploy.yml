@@ -8,12 +8,13 @@
 #   push to main  -> validate, then deploy to production
 #   manual run    -> validate, then deploy to production
 #
-# Required GitHub secret (Settings -> Secrets and variables -> Actions -> Secrets):
-#   VERCEL_TOKEN        Vercel -> Account Settings -> Tokens -> Create Token
-#
-# Required GitHub variables (Settings -> Secrets and variables -> Actions -> Variables):
-#   VERCEL_ORG_ID       "orgId" from .vercel/project.json after running `vercel link` once
-#   VERCEL_PROJECT_ID   "projectId" from the same file
+# Configuration lives in the PRODUCTION GitHub Environment (Settings -> Environments ->
+# PRODUCTION), and the deploy job below opts in with `environment: PRODUCTION`:
+#   secret    VERCEL_TOKEN        Vercel -> Account Settings -> Tokens -> Create Token
+#   variable  VERCEL_ORG_ID       "orgId" from .vercel/project.json after `vercel link`
+#   variable  VERCEL_PROJECT_ID   "projectId" from the same file
+# Pull request previews also run in this environment (same-repo branches only), so any
+# required-reviewer or branch rule added to PRODUCTION will apply to them too.
 name: Deploy Resume (Vercel)
 
 on:
@@ -45,6 +46,7 @@ jobs:
   deploy:
     name: Deploy
     needs: validate
+    environment: PRODUCTION
     runs-on: ubuntu-latest
     # Secrets are not available to pull requests from forks, so only deploy previews for
     # branches in this repository.
