@@ -219,9 +219,9 @@ dialog.crop .row .msg{margin-right:auto}
   <footer id="foot"><span id="footnote"></span><span id="exmsg" aria-live="polite"></span></footer>
 </div>
 
-<script type="text/plain" id="lib-jspdf">__JSPDF__</script>
+<!--ED--><script type="text/plain" id="lib-jspdf">__JSPDF__</script>
 <script type="text/plain" id="lib-docx">__DOCX__</script>
-<script type="application/json" id="seed">__DATA__</script>
+<!--/ED--><script type="application/json" id="seed">__DATA__</script>
 <script>
 (function(){
   var KEY="resume-data-v1", seed=JSON.parse(document.getElementById("seed").textContent), D=seed;
@@ -393,17 +393,17 @@ dialog.crop .row .msg{margin-right:auto}
     b.disabled=false;if(ok)closeCrop()};
 
   /* ---- export ---- */
-  var loaded={};
-  function loadLib(id){if(loaded[id])return;var s=document.createElement("script");s.textContent=document.getElementById(id).textContent;document.head.appendChild(s);loaded[id]=1}
+/*ED*/  var loaded={};
+  function loadLib(id){if(loaded[id])return;var s=document.createElement("script");s.textContent=document.getElementById(id).textContent;document.head.appendChild(s);loaded[id]=1}/*/ED*/
   function note(m){$("exmsg").textContent=m}
-  async function saveFile(name,blob){
+/*ED*/  async function saveFile(name,blob){
     var dl=null;try{if(window.claude&&claude.use)dl=await claude.use("downloads")}catch(e){}
     if(dl){try{await dl.save({filename:name,data:blob});note("Saved "+name);return}catch(e){if(e&&e.code==="declined"){note("");return}}}
     var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();
     setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1500);note("Downloaded "+name)
-  }
-  function fname(ext){return D.name.replace(/\s+/g,"-")+"-Resume."+ext}
-  function ascii(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-").replace(/[^\x20-\x7E -ÿ•]/g,"")}
+  }/*/ED*/
+  function fname(ext){return D.name.trim().replace(/\s+/g,"-")+"-Resume."+ext}
+/*ED*/  function ascii(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-").replace(/[^\x20-\x7E -ÿ•]/g,"")}
   function buildPdf(){
     loadLib("lib-jspdf");var doc=new window.jspdf.jsPDF({unit:"pt",format:"letter"});
     var M=48,H=792,maxW=612-2*M,y=M;
@@ -444,8 +444,19 @@ dialog.crop .row .msg{margin-right:auto}
     var doc=new d.Document({creator:D.name,title:D.name+" Resume",sections:[{properties:{page:{margin:{top:900,bottom:900,left:1080,right:1080}}},children:k}]});
     return d.Packer.toBlob(doc)
   }
-  function wire(id,ext,fn){$(id).onclick=async function(){var b=this;b.disabled=true;note("Preparing "+ext.toUpperCase()+"...");try{await saveFile(fname(ext),await fn())}catch(e){note("Export failed: "+(e&&e.message||e))}b.disabled=false}}
-  wire("exportPdf","pdf",buildPdf);wire("exportDocx","docx",buildDocx);
+  function wire(id,ext,fn){$(id).onclick=async function(){var b=this;b.disabled=true;note("Preparing "+ext.toUpperCase()+"...");try{await saveFile(fname(ext),await fn())}catch(e){note("Export failed: "+(e&&e.message||e))}b.disabled=false}}/*/ED*/
+/*ED*/  wire("exportPdf","pdf",buildPdf);wire("exportDocx","docx",buildDocx);/*/ED*/
+  /*OWN*/
+  /* Hosted site: the deploy workflow builds these files from resume.json (scripts/export.mjs),
+     so a download always matches the published resume and any copy uploaded elsewhere. */
+  function published(ext){var name=fname(ext),url="downloads/"+name;$(ext==="pdf"?"exportPdf":"exportDocx").onclick=async function(){
+    var b=this;b.disabled=true;note("Preparing "+ext.toUpperCase()+"...");
+    try{var r=await fetch(url,{method:"HEAD",cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);
+      location.assign(url);note("Downloading "+name)}
+    catch(e){note("The "+ext.toUpperCase()+" is not available yet. It is built on each deploy.")}
+    b.disabled=false}}
+  published("pdf");published("docx");
+  /*/OWN*/
   /* hosted mode: prefer resume.json beside the page when it exists */
   var saved=null;/*ED*/saved=load(); if(saved)D=saved;/*/ED*/
   renderStatic();render();
