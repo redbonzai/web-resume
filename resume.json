@@ -19,7 +19,7 @@
       "url": "https://warehousejobs.com"
     }
   ],
-  "photo": "",
+  "photo": "photo.jpg?v=5ac6e3417c",
   "logo": "wj-mark.svg",
   "summary": "Founding Engineer and CTO with 15+ years designing and shipping distributed systems, APIs, and SDKs. Sole technical owner of WarehouseJobs.com, a production job board, and founding engineer of an AI operations agent (OpenClaw Pilot) and a repair marketplace (Mechanic Dispatch). Deep expertise in TypeScript/NestJS, React and Angular, PostgreSQL, Redis/BullMQ, LLM-agent systems, and contract-first API design, with a record of leading teams and modernizing legacy code across job-board, fintech, healthcare, enterprise, and government domains.",
   "stats": [
