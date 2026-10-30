@@ -112,11 +112,13 @@
       "group": "Cloud & DevOps",
       "items": [
         "Docker",
-        "GitHub Actions",
+        "CI/CD (GitHub Actions)",
+        "Continuous deployment (Railway, Vercel)",
         "Railway",
         "Vercel",
         "Nx/pnpm monorepos",
         "semantic-release",
+        "Dependabot",
         "AWS (Lambda, ECS, EKS, CDK)",
         "Kubernetes",
         "Terraform",
@@ -184,7 +186,8 @@
         "Railway",
         "Vercel",
         "GitHub Actions",
-        "semantic-release"
+        "semantic-release",
+        "CI/CD"
       ],
       "bullets": [
         "Sole technical owner of a production warehouse and logistics job board (React 19 / TanStack Start SSR frontend, NestJS 10 API, PostgreSQL/Prisma, Redis/BullMQ, Stripe, Twilio, S3-compatible storage on MinIO/R2): ~250K lines of TypeScript across 18 planned phases and 30+ semantic-versioned releases (v1.30).",
@@ -193,7 +196,7 @@
         "Implemented first-party conversion attribution (UTM/referrer capture through application and order funnels), JobPosting JSON-LD, and index-correct sitemaps, tying organic search to measurable conversions.",
         "Engineered job distribution in both directions: scheduled ETL from Fantastic.jobs and JobBoardly, an employer batch-ingest API and Excel import wizard with a private ingest SDK, and a tokenized outbound XML feed with event-driven Google Indexing and LinkedIn publishing; ranked direct employer jobs above aggregated listings with SQL-level tiered pagination.",
         "Delivered monetization and engagement systems: Stripe billing and packages, ad campaigns with GA4 fraud checks, promo codes, SMS/email/WebSocket notifications, phone/email OTP and 2FA, job alerts, and Facebook/Instagram/LinkedIn syndication.",
-        "Established quality gates and release automation: 11 GitHub Actions workflows (lint, type-check, contract, unit, integration, E2E, flake-hunt), 490+ automated test files, a 90% coverage threshold, semantic-release, and Docker deployments to Railway (API) and Vercel (frontend) with staging and production environments.",
+        "Built the CI/CD pipeline in GitHub Actions (11 workflows): API and frontend CI on every push and pull request (lint, type-check, OpenAPI contract, unit, integration, E2E, Postman, and coverage gates over 490+ test files, 90% on the API), continuous deployment that ships to Railway (API) and Vercel (frontend) only after CI passes on main, on-demand staging deploys, semantic-release versioning, SwaggerHub OpenAPI publishing, and a scheduled E2E flake hunt.",
         "Authored an AI-agent engineering framework for the repository: a constitution and agent-orchestration model (architecture, backend, QA, CI-monitor, and review agents), personas, 10 reusable skills, and 13 always-on rules enforcing fail-closed behavior, layering, and contract-first development. The SEO audits themselves are deterministic rule engines; AI agents are used in the engineering workflow."
       ]
     },
@@ -217,7 +220,9 @@
         "OpenAPI",
         "Railway",
         "Vercel",
-        "LLM evals"
+        "LLM evals",
+        "GitHub Actions",
+        "CI/CD"
       ],
       "bullets": [
         "Architected and delivered an AI agent that automates communication, coordination, and task management for an Open Compute Project volunteer workstream: 411 commits, semantic-versioned releases through v1.17, MVP in stakeholder testing ahead of a Phase 2 pilot.",
@@ -226,7 +231,7 @@
         "Created a natural-language planner evaluation harness: five YAML case suites, deterministic fast-path checks at midnight, DST, and year-end clocks, LLM arms scored in a dedicated CI workflow, and pre-push and nightly training scripts.",
         "Integrated Gmail, Google Calendar, Drive, Groups.io, Zoom, GitHub, and Slack (Bolt, signed slash/mention commands) through mock/live adapters; delivered meeting intelligence (transcript ingestion, LLM summaries, task extraction, Drive recaps, follow-up drafts) and a community triage/FAQ domain.",
         "Built an Angular 19 operator dashboard (~12.7K lines, 59 specs) covering agent activity, tasks, meetings, analytics, health, and community views.",
-        "Governed by a canonical OpenAPI contract (55 paths) with CI drift guard and Postman sync; 13 GitHub Actions workflows, 330+ unit specs plus integration, E2E, and smoke suites, a 90% coverage gate, semantic-release, and Railway/Vercel deployments."
+        "Governed by a canonical OpenAPI contract (55 paths) with CI drift guard and Postman sync; built CI/CD across 14 GitHub Actions workflows: lint, format, type-check, migrations, sharded unit tests (330+ specs) with a merged 90% coverage gate, integration, E2E and smoke suites, LLM-router health checks, NL-eval scoring, and DCO sign-off on every pull request; continuous deployment of the dashboard to Vercel after Frontend CI passes on main, Railway API deploys, semantic-release, a 15-minute production health probe, and a CI-monitor digest."
       ]
     },
     {
@@ -246,7 +251,8 @@
         "Railway",
         "Vercel",
         "GitHub Actions",
-        "semantic-release"
+        "semantic-release",
+        "CI/CD"
       ],
       "bullets": [
         "Architected and delivered a full-stack car repair research and mechanic marketplace: drivers search repair guidance and discover mechanics by skill match; 80 commits and 8+ semantic-versioned releases.",
@@ -254,7 +260,7 @@
         "Developed an Angular 21 frontend (~8.4K lines) with public search and mechanic flows and an admin dashboard for authentication, analytics, and user management.",
         "Integrated Stripe Basic/Pro/Premium subscriptions with a webhook controller, and adapter-based aggregation of NHTSA VIN decoding, RepairPal, ALLDATA, and CarMD data.",
         "Re-architected the product from a transaction-focused dispatch model to a DIY research and mechanic discovery marketplace, with a v2 repair-knowledge schema and seed data.",
-        "Set up an Nx/pnpm monorepo with GitHub Actions (affected lint/build/test, API E2E against Postgres), commitlint, semantic-release, Docker images, and Railway and Vercel deployments; Jest unit/integration/E2E (Supertest) and Karma/Jasmine frontend tests."
+        "Built CI/CD for an Nx/pnpm monorepo in GitHub Actions: pull-request validation (commitlint, release dry run, lint, Nx-affected test and build, API E2E against Postgres), continuous deployment to Railway (API) and Vercel (frontend) on every merge to main, semantic-release, Docker images, and weekly Dependabot updates; Jest unit/integration/E2E (Supertest) and Karma/Jasmine frontend tests."
       ]
     },
     {
@@ -270,7 +276,8 @@
         "ECS",
         "CDK",
         "OpenTelemetry",
-        "Redis"
+        "Redis",
+        "CI/CD"
       ],
       "bullets": [
         "Led Golang platform services for high-concurrency infrastructure provisioning across AWS environments.",
@@ -294,7 +301,9 @@
         "React",
         "AWS",
         "EKS",
-        "Redis"
+        "Redis",
+        "CI/CD",
+        "Jenkins"
       ],
       "bullets": [
         "Designed high-performance Golang REST APIs for financial transaction workflows; built Spring Boot and Golang microservices on AWS EKS.",
@@ -316,7 +325,8 @@
         "Security",
         "React",
         "Docusaurus",
-        "Redis"
+        "Redis",
+        "CI/CD"
       ],
       "bullets": [
         "Built a GitHub Token Exchange service issuing fine-grained, short-lived credentials for CI/CD pipelines, and JIT token generation for SonarQube scans.",
@@ -359,7 +369,8 @@
         "CircleCI",
         "PostgreSQL",
         "MongoDB",
-        "Redis"
+        "Redis",
+        "CI/CD"
       ],
       "bullets": [
         "Delivered APIs across banking, credit cards, loans, insurance, and health; built and maintained 6+ Node, Golang, and PHP applications.",
