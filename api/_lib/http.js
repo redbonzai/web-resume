@@ -32,21 +32,21 @@ function hasCsrfHeader(req) {
   return req.headers["x-requested-with"] === "resume-editor";
 }
 
-async function readJsonBody(req) {
+async function readJsonBody(req, maxBytes = MAX_BODY_BYTES) {
   let raw = req.body;
   if (raw === undefined) {
     const chunks = [];
     let size = 0;
     for await (const chunk of req) {
       size += chunk.length;
-      if (size > MAX_BODY_BYTES) throw new Error("too_large");
+      if (size > maxBytes) throw new Error("too_large");
       chunks.push(chunk);
     }
     raw = Buffer.concat(chunks).toString("utf8");
   }
   if (Buffer.isBuffer(raw)) raw = raw.toString("utf8");
   if (typeof raw === "string") {
-    if (raw.length > MAX_BODY_BYTES) throw new Error("too_large");
+    if (raw.length > maxBytes) throw new Error("too_large");
     return JSON.parse(raw);
   }
   return raw;

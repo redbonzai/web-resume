@@ -1,3 +1,6 @@
 .github
 scripts
 README.md
+src
+vendor
+tests

@@ -2,11 +2,11 @@
 
 Christian Dominguez's resume as a single static page: search, expandable role blocks, and
 PDF / Word export. Everything on the page renders from [`resume.json`](./resume.json).
-Live at https://web-resume-beryl.vercel.app/
+Live at https://christian-dominguez-resume.vercel.app/
 
 ## Update the resume
 
-**From the live site (owner only).** Open the site, click "Owner sign in" in the footer, sign
+**From the live site (owner only).** Open the site, click "Owner sign in" in the toolbar, sign
 in with GitHub, then click Edit. Change the JSON, preview it, and press "Save to site". The save
 commits `resume.json` to `main`, and the deploy workflow republishes in about a minute.
 
@@ -44,20 +44,33 @@ pull request; the workflow deploys a preview and comments its URL. Validate loca
 
 If the site gets a custom domain later, change `SITE_URL` and the OAuth app's URLs to match.
 
-## Add your photo
+## Change your photo
 
-Put an image next to `index.html` (for example `photo.jpg`) and set `"photo": "photo.jpg"` in
-`resume.json`. Until then the page shows your initials.
+Signed in as the owner, tap your avatar (or "Change photo" in the editor) and pick an image.
+Drag to position it, zoom with the slider, a pinch or the scroll wheel, then "Save photo". The
+square crop is stored as `photo.jpg` and `resume.json`'s `"photo"` is pointed at it, in one
+commit; the site republishes in about a minute. Without a photo the page shows your initials.
+
+## Change the page itself
+
+The page is built from `src/template.html` plus `resume.json` and the two export libraries in
+`vendor/` (jsPDF 2.5.2 and docx 9.8.1). After editing the template run `node scripts/build.mjs`
+and commit the regenerated `index.html`. `resume.json` edits do not need a rebuild: the page
+loads it at runtime and only keeps an embedded copy as an offline fallback.
 
 ## Files
 
 | File                           | Purpose                                                        |
 | ------------------------------ | -------------------------------------------------------------- |
-| `index.html`                   | The page: styles, search, expandable blocks, export, editor    |
+| `index.html`                   | The built page (generated; do not edit by hand)                |
+| `src/template.html`            | Page source: styles, search, blocks, export, editor, cropper   |
+| `vendor/`                      | jsPDF and docx, inlined into the page by the build             |
+| `scripts/build.mjs`            | Builds `index.html` from the template                          |
+| `photo.jpg`                    | Your cropped photo (written by the photo editor)               |
 | `resume.json`                  | All resume content                                             |
-| `api/`                         | Serverless functions: GitHub sign-in, load and save            |
+| `api/`                         | Serverless functions: GitHub sign-in, load, save, photo        |
 | `api/_lib/`                    | Session signing, validation, GitHub client (not routes)        |
-| `tests/`                       | `npm test` runs the sign-in, session, validation and save tests |
+| `tests/`                       | `npm test` runs the sign-in, session, validation, save and photo tests |
 | `scripts/validate.mjs`         | Checks `resume.json` before every deploy                       |
 | `vercel.json`                  | Static hosting, clean URLs, cache and security headers         |
 | `.github/workflows/deploy.yml` | Test and validate, then deploy to Vercel                       |
