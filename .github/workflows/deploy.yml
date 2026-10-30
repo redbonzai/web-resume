@@ -43,6 +43,14 @@ jobs:
           node-version: 22
       - run: node scripts/validate.mjs
       - run: npm test
+      - name: Page is up to date with src/template.html
+        run: |
+          cp index.html /tmp/index.committed.html
+          node scripts/build.mjs
+          # resume.json edits from the web editor do not rebuild index.html; only the embedded
+          # fallback copy of the data may differ, so compare with it removed.
+          strip() { sed -E 's#<script type="application/json" id="seed">.*</script>#<seed/>#' "$1"; }
+          diff -q <(strip /tmp/index.committed.html) <(strip index.html) || { echo "::error::index.html is stale. Run node scripts/build.mjs and commit it."; exit 1; }
 
   deploy:
     name: Deploy
@@ -73,6 +81,14 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
+
+      # Word and PDF are generated from resume.json on every deploy and served from /downloads,
+      # so the site's Export buttons and any uploaded copy always match the page. Chrome (for the
+      # PDF) is preinstalled on ubuntu runners.
+      - name: Build resume downloads (Word + PDF)
+        run: |
+          node scripts/export.mjs
+          ls -la downloads
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest

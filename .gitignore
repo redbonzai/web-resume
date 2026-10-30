@@ -6,3 +6,5 @@ node_modules
 .wr-incoming.stale-*
 stale-*
 *.lock
+downloads/
+.wr-*

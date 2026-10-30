@@ -51,11 +51,21 @@ Drag to position it, zoom with the slider, a pinch or the scroll wheel, then "Sa
 square crop is stored as `photo.jpg` and `resume.json`'s `"photo"` is pointed at it, in one
 commit; the site republishes in about a minute. Without a photo the page shows your initials.
 
+## Word and PDF downloads
+
+Every deploy runs `node scripts/export.mjs`, which builds `downloads/Christian-Dominguez-Resume.docx`
+and `.pdf` from `resume.json`, and the site's Export buttons download exactly those files. Editing
+`resume.json` (from the web editor or Git) therefore updates the page, both downloads, and the copy
+you upload to job sites, in one step. To get the files locally, run `node scripts/export.mjs`
+(needs Google Chrome for the PDF; `--no-pdf` makes the Word file only). `downloads/` is not
+committed.
+
 ## Change the page itself
 
-The page is built from `src/template.html` plus `resume.json` and the two export libraries in
-`vendor/` (jsPDF 2.5.2 and docx 9.8.1). After editing the template run `node scripts/build.mjs`
-and commit the regenerated `index.html`. `resume.json` edits do not need a rebuild: the page
+The page is built from `src/template.html` plus `resume.json`. After editing the template run
+`node scripts/build.mjs` and commit the regenerated `index.html`; CI fails if you forget.
+`node scripts/build.mjs --artifact out.html` builds the standalone version that makes PDF/Word in
+the browser with the libraries in `vendor/` (jsPDF 2.5.2 and docx 9.8.1). `resume.json` edits do not need a rebuild: the page
 loads it at runtime and only keeps an embedded copy as an offline fallback.
 
 ## Files
@@ -64,24 +74,26 @@ loads it at runtime and only keeps an embedded copy as an offline fallback.
 | ------------------------------ | -------------------------------------------------------------- |
 | `index.html`                   | The built page (generated; do not edit by hand)                |
 | `src/template.html`            | Page source: styles, search, blocks, export, editor, cropper   |
-| `vendor/`                      | jsPDF and docx, inlined into the page by the build             |
+| `vendor/`                      | docx (used by the exporter) and jsPDF (standalone build only)  |
+| `scripts/export.mjs`           | Builds the Word and PDF downloads from `resume.json`           |
 | `scripts/build.mjs`            | Builds `index.html` from the template                          |
 | `photo.jpg`                    | Your cropped photo (written by the photo editor)               |
 | `resume.json`                  | All resume content                                             |
 | `api/`                         | Serverless functions: GitHub sign-in, load, save, photo        |
 | `api/_lib/`                    | Session signing, validation, GitHub client (not routes)        |
-| `tests/`                       | `npm test` runs the sign-in, session, validation, save and photo tests |
+| `tests/`                       | `npm test` runs the sign-in, session, validation, save, photo and export tests |
 | `scripts/validate.mjs`         | Checks `resume.json` before every deploy                       |
 | `vercel.json`                  | Static hosting, clean URLs, cache and security headers         |
 | `.github/workflows/deploy.yml` | Test and validate, then deploy to Vercel                       |
 
 ## Deploy workflow
 
-`deploy.yml` runs the tests and validates `resume.json`, then deploys with the Vercel CLI.
+`deploy.yml` runs the tests, validates `resume.json` and checks `index.html` is built from the
+current template, then builds the Word/PDF downloads and deploys with the Vercel CLI.
 Pull requests get a preview; pushes to `main` go to production. It reads `VERCEL_TOKEN`,
 `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` from the `PRODUCTION` GitHub environment.
 
 ## Notes
 
-- The export buttons build the PDF and Word files in the browser from the same data as the page.
+- The export buttons download the Word and PDF files built from `resume.json` on the last deploy.
 - Do not commit real secrets. `.env.example` lists names only.
