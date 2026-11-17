@@ -280,7 +280,7 @@
         "CI/CD"
       ],
       "bullets": [
-        "Led Golang platform services for high-concurrency infrastructure provisioning across AWS environments.",
+        "Led TypeScript and Golang platform services for high-concurrency infrastructure provisioning across AWS environments.",
         "Built internal tooling and AI-driven workflows to generate, validate, and deploy infrastructure, reducing manual engineering effort.",
         "Created reusable AWS CDK L2/L3 constructs (TypeScript and Go) and React/Angular dashboards for deployment state and system health.",
         "Implemented Blue/Green and Canary deployments, telemetry-driven release gates, and automated rollback; integrated CloudWatch and OpenTelemetry.",
