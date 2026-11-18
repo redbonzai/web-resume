@@ -21,7 +21,7 @@
   ],
   "photo": "photo.jpg?v=5ac6e3417c",
   "logo": "wj-mark.svg",
-  "summary": "Founding Engineer and CTO with 15+ years designing and shipping distributed systems, APIs, and SDKs. Sole technical owner of WarehouseJobs.com, a production job board, and founding engineer of an AI operations agent (OpenClaw Pilot) and a repair marketplace (Mechanic Dispatch). Deep expertise in TypeScript/NestJS, React and Angular, PostgreSQL, Redis/BullMQ, LLM-agent systems, and contract-first API design, with a record of leading teams and modernizing legacy code across job-board, fintech, healthcare, enterprise, and government domains.",
+  "summary": "Founding Engineer and CTO with 15+ years designing and shipping distributed systems, APIs, and SDKs. Sole technical owner of WarehouseJobs.com, a production job board, and founding engineer of an AI operations agent (OpenClaw Pilot) and a repair marketplace (Mechanic Dispatch). Deep expertise in TypeScript/NestJS, React and Angular, PostgreSQL, Redis/BullMQ, LLM-agent systems, AI-assisted delivery with GitHub Copilot, Copilot Studio and Azure OpenAI, and contract-first API design, with a record of leading teams and modernizing legacy code across job-board, fintech, healthcare, enterprise, and government domains.",
   "stats": [
     {
       "value": "3",
@@ -94,7 +94,11 @@
         "MCP servers",
         "guardrails & human-in-the-loop",
         "NL eval harnesses",
-        "AI-assisted engineering workflows"
+        "AI-assisted engineering workflows",
+        "GitHub Copilot (IDE, PR review, coding agent)",
+        "Copilot Studio",
+        "Azure OpenAI",
+        "AI coding-assistant governance"
       ]
     },
     {
@@ -187,7 +191,8 @@
         "Vercel",
         "GitHub Actions",
         "semantic-release",
-        "CI/CD"
+        "CI/CD",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Sole technical owner of a production warehouse and logistics job board (React 19 / TanStack Start SSR frontend, NestJS 10 API, PostgreSQL/Prisma, Redis/BullMQ, Stripe, Twilio, S3-compatible storage on MinIO/R2): ~250K lines of TypeScript across 18 planned phases and 30+ semantic-versioned releases (v1.30).",
@@ -197,7 +202,8 @@
         "Engineered job distribution in both directions: scheduled ETL from Fantastic.jobs and JobBoardly, an employer batch-ingest API and Excel import wizard with a private ingest SDK, and a tokenized outbound XML feed with event-driven Google Indexing and LinkedIn publishing; ranked direct employer jobs above aggregated listings with SQL-level tiered pagination.",
         "Delivered monetization and engagement systems: Stripe billing and packages, ad campaigns with GA4 fraud checks, promo codes, SMS/email/WebSocket notifications, phone/email OTP and 2FA, job alerts, and Facebook/Instagram/LinkedIn syndication.",
         "Built the CI/CD pipeline in GitHub Actions (11 workflows): API and frontend CI on every push and pull request (lint, type-check, OpenAPI contract, unit, integration, E2E, Postman, and coverage gates over 490+ test files, 90% on the API), continuous deployment that ships to Railway (API) and Vercel (frontend) only after CI passes on main, on-demand staging deploys, semantic-release versioning, SwaggerHub OpenAPI publishing, and a scheduled E2E flake hunt.",
-        "Authored an AI-agent engineering framework for the repository: a constitution and agent-orchestration model (architecture, backend, QA, CI-monitor, and review agents), personas, 10 reusable skills, and 13 always-on rules enforcing fail-closed behavior, layering, and contract-first development. The SEO audits themselves are deterministic rule engines; AI agents are used in the engineering workflow."
+        "Authored an AI-agent engineering framework for the repository: a constitution and agent-orchestration model (architecture, backend, QA, CI-monitor, and review agents), personas, 10 reusable skills, and 13 always-on rules enforcing fail-closed behavior, layering, and contract-first development. The SEO audits themselves are deterministic rule engines; AI agents are used in the engineering workflow.",
+        "Used GitHub Copilot in local development and in the delivery pipeline (pull-request review and test generation), with Copilot-assisted changes held to the same CI, OpenAPI-contract and coverage gates as all other code before production."
       ]
     },
     {
@@ -222,7 +228,8 @@
         "Vercel",
         "LLM evals",
         "GitHub Actions",
-        "CI/CD"
+        "CI/CD",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Architected and delivered an AI agent that automates communication, coordination, and task management for an Open Compute Project volunteer workstream: 411 commits, semantic-versioned releases through v1.17, MVP in stakeholder testing ahead of a Phase 2 pilot.",
@@ -231,7 +238,8 @@
         "Created a natural-language planner evaluation harness: five YAML case suites, deterministic fast-path checks at midnight, DST, and year-end clocks, LLM arms scored in a dedicated CI workflow, and pre-push and nightly training scripts.",
         "Integrated Gmail, Google Calendar, Drive, Groups.io, Zoom, GitHub, and Slack (Bolt, signed slash/mention commands) through mock/live adapters; delivered meeting intelligence (transcript ingestion, LLM summaries, task extraction, Drive recaps, follow-up drafts) and a community triage/FAQ domain.",
         "Built an Angular 19 operator dashboard (~12.7K lines, 59 specs) covering agent activity, tasks, meetings, analytics, health, and community views.",
-        "Governed by a canonical OpenAPI contract (55 paths) with CI drift guard and Postman sync; built CI/CD across 14 GitHub Actions workflows: lint, format, type-check, migrations, sharded unit tests (330+ specs) with a merged 90% coverage gate, integration, E2E and smoke suites, LLM-router health checks, NL-eval scoring, and DCO sign-off on every pull request; continuous deployment of the dashboard to Vercel after Frontend CI passes on main, Railway API deploys, semantic-release, a 15-minute production health probe, and a CI-monitor digest."
+        "Governed by a canonical OpenAPI contract (55 paths) with CI drift guard and Postman sync; built CI/CD across 14 GitHub Actions workflows: lint, format, type-check, migrations, sharded unit tests (330+ specs) with a merged 90% coverage gate, integration, E2E and smoke suites, LLM-router health checks, NL-eval scoring, and DCO sign-off on every pull request; continuous deployment of the dashboard to Vercel after Frontend CI passes on main, Railway API deploys, semantic-release, a 15-minute production health probe, and a CI-monitor digest.",
+        "Used GitHub Copilot for local development and pull-request review; Copilot-assisted changes reach production only through the same lint, contract, coverage and NL-eval gates as every other change."
       ]
     },
     {
@@ -252,7 +260,8 @@
         "Vercel",
         "GitHub Actions",
         "semantic-release",
-        "CI/CD"
+        "CI/CD",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Architected and delivered a full-stack car repair research and mechanic marketplace: drivers search repair guidance and discover mechanics by skill match; 80 commits and 8+ semantic-versioned releases.",
@@ -260,7 +269,8 @@
         "Developed an Angular 21 frontend (~8.4K lines) with public search and mechanic flows and an admin dashboard for authentication, analytics, and user management.",
         "Integrated Stripe Basic/Pro/Premium subscriptions with a webhook controller, and adapter-based aggregation of NHTSA VIN decoding, RepairPal, ALLDATA, and CarMD data.",
         "Re-architected the product from a transaction-focused dispatch model to a DIY research and mechanic discovery marketplace, with a v2 repair-knowledge schema and seed data.",
-        "Built CI/CD for an Nx/pnpm monorepo in GitHub Actions: pull-request validation (commitlint, release dry run, lint, Nx-affected test and build, API E2E against Postgres), continuous deployment to Railway (API) and Vercel (frontend) on every merge to main, semantic-release, Docker images, and weekly Dependabot updates; Jest unit/integration/E2E (Supertest) and Karma/Jasmine frontend tests."
+        "Built CI/CD for an Nx/pnpm monorepo in GitHub Actions: pull-request validation (commitlint, release dry run, lint, Nx-affected test and build, API E2E against Postgres), continuous deployment to Railway (API) and Vercel (frontend) on every merge to main, semantic-release, Docker images, and weekly Dependabot updates; Jest unit/integration/E2E (Supertest) and Karma/Jasmine frontend tests.",
+        "Configured GitHub Copilot for the repository: a custom Copilot agent and prompt file (.github/agents, .github/prompts) that monitor Nx Cloud CI and apply self-healing fixes, alongside Copilot in the IDE for day-to-day development."
       ]
     },
     {
@@ -277,14 +287,16 @@
         "CDK",
         "OpenTelemetry",
         "Redis",
-        "CI/CD"
+        "CI/CD",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Led TypeScript and Golang platform services for high-concurrency infrastructure provisioning across AWS environments.",
         "Built internal tooling and AI-driven workflows to generate, validate, and deploy infrastructure, reducing manual engineering effort.",
         "Created reusable AWS CDK L2/L3 constructs (TypeScript and Go) and React/Angular dashboards for deployment state and system health.",
         "Implemented Blue/Green and Canary deployments, telemetry-driven release gates, and automated rollback; integrated CloudWatch and OpenTelemetry.",
-        "Designed Redis-based caching and state coordination for low-latency distributed workflows."
+        "Designed Redis-based caching and state coordination for low-latency distributed workflows.",
+        "Used GitHub Copilot in local development and the delivery pipeline (pull-request review, test and infrastructure scaffolding) under team rules: no secrets or sensitive data in prompts, and human review and passing CI before any production deploy."
       ]
     },
     {
@@ -303,13 +315,15 @@
         "EKS",
         "Redis",
         "CI/CD",
-        "Jenkins"
+        "Jenkins",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Designed high-performance Golang REST APIs for financial transaction workflows; built Spring Boot and Golang microservices on AWS EKS.",
         "Implemented Blue/Green and Canary releases in One Pipeline/Jenkins; Kubernetes probes, autoscaling, and fault tolerance.",
         "Integrated OpenTelemetry, CloudWatch, distributed tracing, and structured logging; participated in incident response and root cause analysis.",
-        "Automated infrastructure with AWS CDK (Golang); built Redis caching, TTL/invalidation strategies, and rate limiting for high-throughput APIs."
+        "Automated infrastructure with AWS CDK (Golang); built Redis caching, TTL/invalidation strategies, and rate limiting for high-throughput APIs.",
+        "Used GitHub Copilot for local development and production delivery under enterprise governance: suggestions matching public code blocked, no secrets or customer data in prompts, and every Copilot-assisted change reviewed and tested before release."
       ]
     },
     {
@@ -326,12 +340,14 @@
         "React",
         "Docusaurus",
         "Redis",
-        "CI/CD"
+        "CI/CD",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Built a GitHub Token Exchange service issuing fine-grained, short-lived credentials for CI/CD pipelines, and JIT token generation for SonarQube scans.",
         "Developed a NestJS Security Monitoring platform integrating GitHub, Jira, and Slack to detect and respond to secrets exposure in real time.",
-        "Delivered a React/Docusaurus documentation platform that improved developer onboarding for CI/CD security tooling."
+        "Delivered a React/Docusaurus documentation platform that improved developer onboarding for CI/CD security tooling.",
+        "Helped roll out GitHub Copilot to the engineering team: usage guidelines, security and IP settings, and prompt patterns for tests and documentation, with Copilot output going through normal code review and CI/CD before production."
       ]
     },
     {
@@ -348,12 +364,14 @@
         "GraphQL",
         "CDK",
         "Go",
-        "TypeScript"
+        "TypeScript",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Implemented REST APIs on API Gateway, Lambda, and DynamoDB with custom authorizers, cutting error rates by 25%.",
         "Modernized the platform with AWS SDK v3 and CDK; converted legacy JavaScript Lambdas to TypeScript.",
-        "Developed a GraphQL Lambda powering 336+ Lambdas and an Angular 14 client; authored and enforced OpenAPI specs."
+        "Developed a GraphQL Lambda powering 336+ Lambdas and an Angular 14 client; authored and enforced OpenAPI specs.",
+        "Adopted GitHub Copilot for local development and for generating tests and boilerplate for Lambda, CDK and GraphQL services that shipped to production through the standard review and deployment path."
       ]
     },
     {
@@ -370,12 +388,14 @@
         "PostgreSQL",
         "MongoDB",
         "Redis",
-        "CI/CD"
+        "CI/CD",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Delivered APIs across banking, credit cards, loans, insurance, and health; built and maintained 6+ Node, Golang, and PHP applications.",
         "Examples: Golang auto insurance API on Kubernetes, NestJS credit report API (Experian data), and 16 serverless credit card Lambdas.",
-        "Used Redis caching in aggregation services to improve response times and reduce relational database load."
+        "Used Redis caching in aggregation services to improve response times and reduce relational database load.",
+        "Adopted GitHub Copilot at general availability (2022) for local development and for test and Terraform scaffolding that shipped to production through code review and CircleCI."
       ]
     },
     {
@@ -390,11 +410,13 @@
         "PHP",
         "Python",
         "Java",
-        "Symfony"
+        "Symfony",
+        "GitHub Copilot"
       ],
       "bullets": [
         "Built credit-data SDKs in Golang, Node, PHP, Python, and Java; supported a Node TypeScript platform and a legacy Symfony platform.",
-        "Delivered a Credit Data Microservice used across client applications."
+        "Delivered a Credit Data Microservice used across client applications.",
+        "Early GitHub Copilot user from its 2021 technical preview, applying it to SDK development across Go, Node, PHP, Python and Java with every suggestion reviewed and covered by tests before release."
       ]
     },
     {
